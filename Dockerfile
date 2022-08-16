@@ -23,3 +23,5 @@ WORKDIR /app
 COPY --from=builder /app/pigs .
 COPY pocsag pocsag
 RUN chmod +x pocsag
+
+CMD "./pigs"
