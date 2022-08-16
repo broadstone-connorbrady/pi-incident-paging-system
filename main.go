@@ -10,7 +10,7 @@ func main() {
 	r := gin.Default()
 
 	r.POST("/opsgenie/alert-created", func(c *gin.Context) {
-		cmd := exec.Command("sh", "-c", "echo -e \"1923929:Front door buzzer activated\" | ./pocsag -f \"138075000\" -b 3 -r 1200")
+		cmd := exec.Command("bash", "-c", "echo -e \"1923929:Front door buzzer activated\" | ./pocsag -f \"138075000\" -b 3 -r 1200")
 
 		// echo -e "1923929:Front door buzzer activated" | ../pocsag -f "138075000" -b 3 -r 1200
 
