@@ -1,27 +1,21 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
-	"os/exec"
+	"pi-incident-paging-system/alert"
 )
 
 func main() {
 	r := gin.Default()
 
-	r.POST("/opsgenie/alert-created", func(c *gin.Context) {
-		cmd := exec.Command("bash", "-c", "echo -e \"1923929:Front door buzzer activated\" | ./pocsag -f \"138075000\" -b 3 -r 1200")
+	// 1923929
+	// 138075000
 
-		// echo -e "1923929:Front door buzzer activated" | ../pocsag -f "138075000" -b 3 -r 1200
-
-		err := cmd.Start()
-		fmt.Println("The command is running")
-		if err != nil {
-			fmt.Println(err)
-		}
+	r.POST("/opsgenie/alert/created", func(c *gin.Context) {
+		alert.SendAlert("System 123 Down", 138075000, []string{
+			"1923929",
+		})
 	})
-
-	// echo -e "1923929:Front door buzzer activated" | ./pocsag -f "138075000" -b 3 -r 1200
 
 	r.Run()
 }
