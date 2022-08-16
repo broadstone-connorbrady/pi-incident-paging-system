@@ -2,7 +2,9 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"pi-incident-paging-system/alert"
+	"pi-incident-paging-system/webhook_data"
 )
 
 func main() {
@@ -12,7 +14,14 @@ func main() {
 	// 138075000
 
 	r.POST("/opsgenie/alert/created", func(c *gin.Context) {
-		alert.SendAlert("System 123 Down", 138075000, []string{
+		var input webhook_data.OpsgenieWebhookCreate
+
+		if err := c.ShouldBindJSON(&input); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		alert.SendAlert(input.Alert.Message, 138075000, []string{
 			"1923929",
 		})
 	})
