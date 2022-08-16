@@ -18,12 +18,8 @@ RUN go build -o pigs
 
 FROM arm64v8/debian:buster-slim AS image
 
-RUN apt-get update && apt-get install -y git
-
-RUN apt-get install -y sudo
-
-WORKDIR rpitx
-RUN git clone https://github.com/F5OEO/rpitx .
-RUN bash install.sh
+WORKDIR /app
 
 COPY --from=builder /app/pigs .
+COPY pocsag pocsag
+RUN chmod +x pocsag
