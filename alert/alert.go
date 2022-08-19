@@ -11,6 +11,6 @@ func SendAlert(priority string, message string, frequency int32, addresses []str
 
 		systemCommand := exec.Command("bash", "-c", command)
 
-		systemCommand.Run()
+		go systemCommand.Run()
 	}
 }
