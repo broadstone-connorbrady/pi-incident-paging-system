@@ -21,7 +21,7 @@ func main() {
 			return
 		}
 
-		alert.SendAlert(input.Alert.Message, 138075000, []string{
+		alert.SendAlert(input.Alert.Priority, input.Alert.Message, 138075000, []string{
 			"1923929",
 		})
 	})

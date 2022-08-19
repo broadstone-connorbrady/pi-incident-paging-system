@@ -7,6 +7,6 @@ type OpsgenieWebhookCreate struct {
 }
 
 type OpsgenieWebhookCreateAlert struct {
-	Message string `json:"message" binding:"required"`
+	Message  string `json:"message" binding:"required"`
 	Priority string `json:"priority" binding:"required"`
 }
